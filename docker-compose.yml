@@ -1,0 +1,54 @@
+version: '3.9'
+services:
+  user-service:
+    build: ./userServices
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo-user
+    environment:
+      MONGO_URL: mongodb://mongo-user:27017/UserService
+    networks:
+      - microservices-network
+
+  product-service:
+    build: ./ProductServices
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongo-product
+    environment:
+      MONGO_URL: mongodb://mongo-product:27017/ProductService
+    networks:
+      - microservices-network
+
+  mongo-user:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongo-data-user:/data/db
+    networks:
+      - microservices-network
+
+  mongo-product:
+    image: mongo
+    ports:
+      - "27018:27017"
+    volumes:
+      - ./mongo-data-product:/data/db
+    networks:
+      - microservices-network
+
+  nginx:
+    image: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - microservices-network
+    
+networks:
+  microservices-network:
+    driver: bridge
