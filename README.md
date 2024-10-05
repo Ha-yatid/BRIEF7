@@ -1,11 +1,23 @@
 # BRIEF7
-Microservices (dockerfile docker_compoose  nginx )
-*UserService
+# Microservices Project
+This project is a microservices-based architecture using Express.js and MongoDB.
 
-*ProductService
+## Features:
+- UserService
+- ProductService 
+- MongoServiceUser
+- MongoServiceProduct
+- NginxService
+- DockerFiles et DockerCompose
 
-*MongoServiceUser
+## Technologies Used:
+- Node.js
+- Express.js
+- MongoDB
+- Nginx
 
-*MongoServiceProduct
 
-*NginxService
+
+
+
+
